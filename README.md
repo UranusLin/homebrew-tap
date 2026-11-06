@@ -73,3 +73,17 @@ python3 -m unittest discover -s scripts -p 'test_*.py'
 creates a **draft** pin. Never publish that pin without the remote refresh above.
 The updater checks the archive checksum, allowed members, per-file hashes, target,
 version and source commit format. Checksums do not replace publisher signatures.
+
+## Validation recorded locally
+
+Six updater verification tests pass. Homebrew formula style and GitHub workflow
+syntax checks pass. The exact local alpha archive was installed with real
+Homebrew in a temporary tap, without linking it into PATH; `brew test --force`
+passed both binary version checks and metadata init/list. The temporary package
+and tap were removed. This does not verify downloading the future GitHub Release
+or hosted CI.
+
+Repeat with `python3 scripts/smoke_local.py /path/to/release.tar.gz`. It refuses to
+run if Runloom is already installed by brew, keeps trust in temporary config,
+disables automatic update/cleanup/autoremove, and does not configure services.
+Homebrew may populate its shared caches and Ruby tooling during testing.

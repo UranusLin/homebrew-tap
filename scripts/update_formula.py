@@ -39,10 +39,11 @@ def verify(data, checksum, version):
     base=name[:-7]
     expected={'bin/runloom','bin/runloom-node','LICENSE','THIRD_PARTY_NOTICES.md','RELEASE.md','install.py','BUILD.json'}
     contents={}
-    with tarfile.open(fileobj=io.BytesIO(data), mode='r:gz') as archive:
-        members=archive.getmembers()
-        if len(members)>20 or sum(m.size for m in members)>MAX_BYTES:raise ValueError('oversized bundle')
-        for member in members:
+    with tarfile.open(fileobj=io.BytesIO(data), mode='r|gz') as archive:
+        total=0
+        for count,member in enumerate(archive,1):
+            total+=member.size
+            if count>20 or total>MAX_BYTES:raise ValueError('oversized bundle')
             path=PurePosixPath(member.name)
             if path.is_absolute() or '..' in path.parts or path.parts[0]!=base or not (member.isfile() or member.isdir()):
                 raise ValueError('unsafe bundle member')
