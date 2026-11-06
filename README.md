@@ -4,14 +4,16 @@ Homebrew distribution for [Runloom](https://github.com/UranusLin/runloom), an MI
 AI work continuity core. Apple Silicon macOS 14+ binary preview; no GUI or bundled
 Claude/Codex credentials. Installation does not register or restart a service.
 
-**Preparation status:** the initial pin was generated from a locally validated
-alpha archive. Runloom's public Release must exist and the formula must be refreshed
-from that actual asset before this tap is advertised as installable. See
-`release.json`: `remote_verified` must be `true`. Local and CI builds may have
-different checksums even at the same source commit. Do not copy a local checksum
-onto a separately built GitHub artifact.
+**Current release:** [`0.1.0-alpha.1`](https://github.com/UranusLin/runloom/releases/tag/v0.1.0-alpha.1).
+The formula checksum was verified against the published GitHub Release archive
+and its per-file build manifest. `release.json` records the source commit and
+`remote_verified: true`. GitHub's Tap checks independently download, verify,
+install and test the pinned release.
 
-## Install (after publication)
+For future releases, always refresh the pin from the published asset: local and
+CI builds may have different checksums even at the same source commit.
+
+## Install
 
 ```sh
 brew install UranusLin/tap/runloom

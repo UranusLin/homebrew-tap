@@ -3,7 +3,7 @@ class Runloom < Formula
   homepage "https://github.com/UranusLin/runloom"
   url "https://github.com/UranusLin/runloom/releases/download/v0.1.0-alpha.1/runloom-0.1.0-alpha.1-aarch64-apple-darwin.tar.gz"
   version "0.1.0-alpha.1"
-  sha256 "73685164c986eea020678815f82e5e64e6a448b77bca74f496d5951ba298e6b5"
+  sha256 "41a7292e4d22d8a751929fcb830ea65f0e9083f784d33b7091f867e4aae1cc96"
   license "MIT"
 
   depends_on arch: :arm64
